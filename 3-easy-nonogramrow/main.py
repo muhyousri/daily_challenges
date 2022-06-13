@@ -12,22 +12,23 @@ nonogramrow([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]) => [1,1,1,1,1,1,1,1]
 As a special case, nonogram puzzles usually represent the empty output ([]) as [0]. If you prefer to do it this way, that's fine, but 0 should not appear in the output in any other case."
 """
 
-def nonogram(binary):
+def nonogramrow(binary):
     count = 0
     array = []
     for i in range(len(binary)):
         if binary[i] == 1:
-            count += 1
-            print(count)
-        elif binary[i] == 1 and binary[i+1] == 0:
-            count +=1
-            array.append(count)
-            count = 0
-        elif binary[i] == 1 and i == (len(binary) - 1):
-            count +=1 
+            if i < len(binary) - 1:
+              count += 1
+            elif i == len(binary) - 1:
+               count += 1 
+               array.append(count)
+        elif binary[i] == 0 and i != 0 :
+            if binary[i-1] == 1:
+               array.append(count)
+               count = 0
         
     return array
 
 
-
+#nonogramrow([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1])
             
