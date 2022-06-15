@@ -1,3 +1,4 @@
+"""
 Background
 The ABACABA sequence is defined as follows: the first iteration is the first letter of the alphabet (a). To form the second iteration, you take the second letter (b) and put the first iteration (just a in this case) before and after it, to get aba. For each subsequent iteration, place a copy of the previous iteration on either side of the next letter of the alphabet.
 
@@ -21,6 +22,18 @@ Optional bonus
 Complete the challenge using O(n) memory, where n is the iteration number.
 
 If you don't know what that means, here's another way to say it that's roughly equivalent in this case. You can have as many variables as you want, but they must each hold either a single number or character, or a structure (list, vector, dict, string, map, tree, etc.) whose size never gets much larger than 26. If a function calls itself recursively, the call stack must also be limited to a depth of about 26. (This is definitely an oversimplification, but that's the basic idea. Feel free to ask if you want to know about whether any particular approach uses O(n) memory.)
+"""
 
 
+def add_sequence (a,b):
+    c = a+b+a
+    return c 
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+sequence = ""
+for i in range(len(alphabet)):
+    sequence = add_sequence(sequence,alphabet[i])
+print (sequence)
+
+    
 
