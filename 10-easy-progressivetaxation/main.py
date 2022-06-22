@@ -23,7 +23,7 @@ tax(1234567) => 473326
 
 
 """
-
+from bracket import *
 def tax(income):
     if income <= 10000:
         tax = 0
@@ -33,5 +33,26 @@ def tax(income):
         tax = int(((income - 30000) * 0.25 ) + 2000)
     if income > 100000 :
         tax = int(((income - 100000) * 0.40 ) + 19500)
+
+    return tax 
+
+
+# Optional - Getting values from a dict 
+
+def tax_optional(income):
+    cap1 = list(brackets.keys())[0]
+    cap2 = list(brackets.keys())[1]
+    cap3 = list(brackets.keys())[2]
+    tax_cap1 = cap1 * brackets[cap1]
+    tax_cap2 = (cap2 - cap1) * brackets[cap2]
+    tax_cap3 = ((cap3 - cap2) * brackets[cap3]) + tax_cap2
+    if income <= cap1:
+        tax = brackets[cap1]
+    if income > cap1 and income <= cap2:
+        tax = int(((income - cap1) * brackets[cap1])+ tax_cap1)
+    if income > cap2 and income <= cap3 :
+        tax = int(((income - cap2) * brackets[cap3] ) + tax_cap2)
+    if income > cap3 :
+        tax = int(((income - cap3) *  brackets['over']) + tax_cap3)
 
     return tax 
